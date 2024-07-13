@@ -1,0 +1,91 @@
+[gd_resource type="VisualShader" load_steps=12 format=3 uid="uid://c7i60bwhln5dy"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mt208"]
+frequency = 0.0815
+fractal_octaves = 10
+fractal_lacunarity = 3.03
+fractal_gain = 1.225
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rkik4"]
+noise = SubResource("FastNoiseLite_mt208")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_onu7u"]
+output_port_for_preview = 0
+texture = SubResource("NoiseTexture2D_rkik4")
+
+[sub_resource type="Gradient" id="Gradient_n3t7r"]
+offsets = PackedFloat32Array(0.264368, 0.741379, 0.833333)
+colors = PackedColorArray(0.445524, 0.339519, 0.160109, 1, 0.953534, 0.897592, 0.814216, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_olxmf"]
+gradient = SubResource("Gradient_n3t7r")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_naynb"]
+output_port_for_preview = 0
+texture = SubResource("GradientTexture2D_olxmf")
+
+[sub_resource type="Gradient" id="Gradient_inu5i"]
+offsets = PackedFloat32Array(0.442529, 0.649425)
+colors = PackedColorArray(0.299547, 0.299547, 0.299547, 1, 0.581033, 0.581033, 0.581032, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8j7ga"]
+gradient = SubResource("Gradient_inu5i")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ba0xf"]
+output_port_for_preview = 0
+texture = SubResource("GradientTexture2D_8j7ga")
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_x36bk"]
+constant = Color(0.534026, 0.368532, 0.207201, 1)
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_q5l0n"]
+constant = 1.884
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D tex_frg_2;
+uniform sampler2D tex_frg_3;
+uniform sampler2D tex_frg_4;
+
+
+
+void fragment() {
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, vec2(n_out2p0.xy));
+
+
+// Texture2D:4
+	vec4 n_out4p0 = texture(tex_frg_4, vec2(n_out2p0.xy));
+
+
+// FloatConstant:6
+	float n_out6p0 = 1.884000;
+
+
+// Output:0
+	ALBEDO = vec3(n_out3p0.xyz);
+	ROUGHNESS = n_out4p0.x;
+	SPECULAR = n_out4p0.x;
+	SSS_STRENGTH = n_out6p0;
+
+
+}
+"
+nodes/fragment/0/position = Vector2(600, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_onu7u")
+nodes/fragment/2/position = Vector2(-340, 20)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_naynb")
+nodes/fragment/3/position = Vector2(0, 0)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_ba0xf")
+nodes/fragment/4/position = Vector2(-120, 420)
+nodes/fragment/5/node = SubResource("VisualShaderNodeColorConstant_x36bk")
+nodes/fragment/5/position = Vector2(360, 480)
+nodes/fragment/6/node = SubResource("VisualShaderNodeFloatConstant_q5l0n")
+nodes/fragment/6/position = Vector2(340, 580)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 3, 0, 0, 0, 2, 0, 4, 0, 4, 0, 0, 3, 4, 0, 0, 4, 6, 0, 0, 17)

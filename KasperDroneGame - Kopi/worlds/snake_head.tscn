@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn5j7mh0eukv6"]
+
+[ext_resource type="PackedScene" uid="uid://ww5dv2auobqm" path="res://worlds/world.tscn" id="1_j20wb"]
+[ext_resource type="PackedScene" uid="uid://chdpmtg2ry8kl" path="res://assests/snake_head.tscn" id="2_ku8h4"]
+
+[node name="SnakeHead" instance=ExtResource("1_j20wb")]
+
+[node name="DirectionalLight3D" parent="." index="1"]
+transform = Transform3D(1, -1.13553e-07, 1.32954e-07, 0, 0.760406, 0.649448, -1.74845e-07, -0.649448, 0.760406, 0, 0, 0)
+shadow_enabled = false
+directional_shadow_mode = 1
+directional_shadow_blend_splits = true
+
+[node name="MeshInstance3D" parent="." index="3"]
+visible = false
+
+[node name="untitled" parent="." index="5" instance=ExtResource("2_ku8h4")]

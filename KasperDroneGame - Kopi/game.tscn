@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ls6ivol37emk"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_6o7ye"]
+[ext_resource type="PackedScene" uid="uid://ckslmut20ixkg" path="res://ui.tscn" id="2_wxd3m"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_6o7ye")
+
+[node name="UI" parent="." instance=ExtResource("2_wxd3m")]
+
+[connection signal="snake_level" from="UI" to="." method="_on_ui_snake_level"]

@@ -1,0 +1,153 @@
+[gd_scene load_steps=21 format=3 uid="uid://ckslmut20ixkg"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_gkc7h"]
+[ext_resource type="Texture2D" uid="uid://bwmcb034im2sc" path="res://assests/pics/frame_00_delay-0.04s.png" id="2_5f52x"]
+[ext_resource type="Texture2D" uid="uid://bxcpln66y46ca" path="res://assests/pics/frame_01_delay-0.04s.png" id="3_xlu8i"]
+[ext_resource type="Texture2D" uid="uid://ckvlt4bxpnjal" path="res://assests/pics/frame_10_delay-0.04s.png" id="4_7qw7w"]
+[ext_resource type="Texture2D" uid="uid://bjby7duhq7tc5" path="res://assests/pics/frame_11_delay-0.04s.png" id="5_k0cwr"]
+[ext_resource type="Texture2D" uid="uid://c31cv35fqtuan" path="res://assests/pics/frame_02_delay-0.04s.png" id="6_7tkv0"]
+[ext_resource type="Texture2D" uid="uid://bljke74xjv5su" path="res://assests/pics/frame_12_delay-0.16s.png" id="6_g3hdt"]
+[ext_resource type="Texture2D" uid="uid://h8v40li5w7gj" path="res://assests/pics/frame_03_delay-0.04s.png" id="7_d0tsr"]
+[ext_resource type="Texture2D" uid="uid://bkal8bn4l4wnh" path="res://assests/pics/frame_04_delay-0.04s.png" id="8_yhj8j"]
+[ext_resource type="Texture2D" uid="uid://d4c768m8lwo5n" path="res://assests/pics/frame_05_delay-0.04s.png" id="9_ymggv"]
+[ext_resource type="Texture2D" uid="uid://dawyd4pfy8k87" path="res://assests/pics/frame_06_delay-0.04s.png" id="10_0enqf"]
+[ext_resource type="Texture2D" uid="uid://fdoffa2yf40" path="res://assests/pics/frame_07_delay-0.04s.png" id="11_0euev"]
+[ext_resource type="Texture2D" uid="uid://d0nq8wldqlm1k" path="res://assests/pics/frame_08_delay-0.04s.png" id="12_wx88p"]
+[ext_resource type="Texture2D" uid="uid://cmcftr0c0ffdt" path="res://assests/pics/frame_09_delay-0.04s.png" id="13_h1fdc"]
+
+[sub_resource type="Gradient" id="Gradient_lo221"]
+offsets = PackedFloat32Array(0, 0.373134, 0.716418, 1)
+colors = PackedColorArray(0, 0.105882, 0, 0.588235, 0.258824, 0.4, 0.415686, 0.588235, 0, 0.611765, 0.478431, 0.588235, 0, 0.901961, 0.729412, 0.588235)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vuvjs"]
+gradient = SubResource("Gradient_lo221")
+fill_from = Vector2(0.0858586, 0.176768)
+fill_to = Vector2(0.681818, 0.626263)
+metadata/_snap_count = 9
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wyql8"]
+diffuse_texture = SubResource("GradientTexture2D_vuvjs")
+
+[sub_resource type="LabelSettings" id="LabelSettings_oh24b"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_f1ii3"]
+line_spacing = 10.0
+font_size = 20
+font_color = Color(1, 0.00784314, 0, 1)
+outline_size = 2
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_sc2q0"]
+frames = 13
+pause = true
+one_shot = true
+speed_scale = 1.5
+frame_0/texture = ExtResource("2_5f52x")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("3_xlu8i")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("6_7tkv0")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("7_d0tsr")
+frame_3/duration = 0.1
+frame_4/texture = ExtResource("8_yhj8j")
+frame_4/duration = 0.1
+frame_5/texture = ExtResource("9_ymggv")
+frame_5/duration = 0.1
+frame_6/texture = ExtResource("10_0enqf")
+frame_6/duration = 0.1
+frame_7/texture = ExtResource("11_0euev")
+frame_7/duration = 0.1
+frame_8/texture = ExtResource("12_wx88p")
+frame_8/duration = 0.1
+frame_9/texture = ExtResource("13_h1fdc")
+frame_9/duration = 0.1
+frame_10/texture = ExtResource("4_7qw7w")
+frame_10/duration = 0.1
+frame_11/texture = ExtResource("5_k0cwr")
+frame_11/duration = 0.1
+frame_12/texture = ExtResource("6_g3hdt")
+frame_12/duration = 0.1
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gkc7h")
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_wyql8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.783
+anchor_top = 0.216
+anchor_right = 0.961
+anchor_bottom = 0.784
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Button" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Start"
+
+[node name="Button2" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Snake"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_top = 0.039
+anchor_right = 0.035
+anchor_bottom = 0.039
+text = "Score: 10"
+label_settings = SubResource("LabelSettings_oh24b")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.967
+anchor_top = 0.039
+anchor_right = 0.967
+anchor_bottom = 0.039
+offset_left = -26.984
+offset_top = 81.728
+offset_right = 52.016
+offset_bottom = 109.728
+grow_horizontal = 0
+rotation = -1.5708
+text = "<3 <3 <3"
+label_settings = SubResource("LabelSettings_f1ii3")
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_sc2q0")
+stretch_mode = 3

@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://ww5dv2auobqm"]
+
+[ext_resource type="Script" path="res://worlds/world.gd" id="1_mgpcu"]
+[ext_resource type="PackedScene" uid="uid://dmgmt4ccuyqqp" path="res://drone.tscn" id="1_xp7le"]
+[ext_resource type="Script" path="res://worlds/Target.gd" id="3_oewd6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lagnr"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_4luvw"]
+sky_material = SubResource("ProceduralSkyMaterial_lagnr")
+
+[sub_resource type="Environment" id="Environment_7ptod"]
+background_mode = 2
+sky = SubResource("Sky_4luvw")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_125ev"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i1pwi"]
+radius = 3.0
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_mgpcu")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7ptod")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="drone" parent="." instance=ExtResource("1_xp7le")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.362451, 4.76605)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_125ev")
+
+[node name="Targets" type="Node3D" parent="."]
+
+[node name="Target" type="Node3D" parent="Targets"]
+script = ExtResource("3_oewd6")
+
+[node name="Area3D" type="Area3D" parent="Targets/Target"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Targets/Target/Area3D"]
+shape = SubResource("SphereShape3D_i1pwi")

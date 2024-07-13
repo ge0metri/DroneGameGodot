@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckslmut20ixkg"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_gkc7h"]
+[ext_resource type="Texture2D" uid="uid://cjdouvibevshm" path="res://assests/pics/confetti.tres" id="2_evlbd"]
+[ext_resource type="Script" path="res://TextureRect.gd" id="3_w2o2c"]
+
+[sub_resource type="Gradient" id="Gradient_lo221"]
+offsets = PackedFloat32Array(0, 0.373134, 0.716418, 1)
+colors = PackedColorArray(0, 0.105882, 0, 0.588235, 0.258824, 0.4, 0.415686, 0.588235, 0, 0.611765, 0.478431, 0.588235, 0, 0.901961, 0.729412, 0.588235)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vuvjs"]
+gradient = SubResource("Gradient_lo221")
+fill_from = Vector2(0.0858586, 0.176768)
+fill_to = Vector2(0.681818, 0.626263)
+metadata/_snap_count = 9
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wyql8"]
+diffuse_texture = SubResource("GradientTexture2D_vuvjs")
+
+[sub_resource type="LabelSettings" id="LabelSettings_oh24b"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_f1ii3"]
+line_spacing = 10.0
+font_size = 20
+font_color = Color(1, 0.00784314, 0, 1)
+outline_size = 2
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gkc7h")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_evlbd")
+stretch_mode = 6
+script = ExtResource("3_w2o2c")
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_wyql8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.783
+anchor_top = 0.216
+anchor_right = 0.961
+anchor_bottom = 0.784
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Button" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Start"
+
+[node name="Button2" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Snake"
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 902.016
+offset_top = 241.968
+offset_right = 1107.02
+offset_bottom = 269.968
+text = "Score: 10"
+label_settings = SubResource("LabelSettings_oh24b")
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 902.016
+offset_top = 289.968
+offset_right = 1107.02
+offset_bottom = 317.968
+grow_horizontal = 0
+text = "<3 <3 <3"
+label_settings = SubResource("LabelSettings_f1ii3")
+horizontal_alignment = 2
+
+[connection signal="pressed" from="Menu/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

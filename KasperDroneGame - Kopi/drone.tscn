@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmgmt4ccuyqqp"]
+
+[ext_resource type="Script" path="res://Rigidbody3D.gd" id="1_0vesd"]
+[ext_resource type="Script" path="res://Controller.gd" id="2_5p3sn"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sgyfd"]
+radius = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8gjvd"]
+size = Vector2(1.5, 2)
+
+[sub_resource type="TorusMesh" id="TorusMesh_nuv0b"]
+inner_radius = 0.192
+outer_radius = 0.335
+rings = 10
+ring_segments = 10
+
+[node name="drone" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.422262, 0)
+
+[node name="Rigidbody3D" type="RigidBody3D" parent="."]
+top_level = true
+disable_mode = 2
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+mass = 0.5
+gravity_scale = 2.66454e-15
+lock_rotation = true
+linear_damp = 7.0
+angular_damp = 7.0
+script = ExtResource("1_0vesd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rigidbody3D"]
+shape = SubResource("SphereShape3D_sgyfd")
+
+[node name="Controller" type="Node3D" parent="Rigidbody3D"]
+script = ExtResource("2_5p3sn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rigidbody3D/Controller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0988757, 0)
+mesh = SubResource("PlaneMesh_8gjvd")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rigidbody3D/Controller/MeshInstance3D"]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.920735, -0.0231628, -1.24777)
+mesh = SubResource("TorusMesh_nuv0b")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Rigidbody3D/Controller/MeshInstance3D"]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.921, -0.0231123, -1.24767)
+mesh = SubResource("TorusMesh_nuv0b")
+
+[node name="Camera3D" type="Camera3D" parent="Rigidbody3D/Controller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326138, 0)
